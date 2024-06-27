@@ -176,7 +176,7 @@ try:
         meshes = model.extract_mesh(scene_codes, not args.bake_texture, resolution=args.mc_resolution)
         timer.end("Extracting mesh")
 
-        out_mesh_path = os.path.join(output_dir, str(i), f"mesh.{args.model_save_format}")
+        out_mesh_path = os.path.join(output_dir, str(i), f"3DModel.{args.model_save_format}")
         if args.bake_texture:
             out_texture_path = os.path.join(output_dir, str(i), "texture.png")
 
