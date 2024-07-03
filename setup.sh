@@ -36,7 +36,7 @@ server {
     }
 
     location /objects/ {
-    	alias /home/thisforbusiness00/TextTo3D-Toolkit/output/0/;
+    	alias /YourPath/TextTo3D-Toolkit/output/0/;
     }
 
 }
@@ -46,7 +46,7 @@ EOL
 sudo systemctl restart nginx
 
 # Create output directory
-mkdir -p /home/thisforbusiness00/TextTo3D-Toolkit/output/0
+# mkdir -p YourPath/TextTo3D-Toolkit/output/0 Is not useful if the directory has already been created(The Repository already has it)
 
 # Create conda environments if they do not exist
 if ! conda info --envs | grep -q 'env1'; then

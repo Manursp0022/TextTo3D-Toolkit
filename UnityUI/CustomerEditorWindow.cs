@@ -55,14 +55,12 @@ public class CustomEditorWindow : EditorWindow
     private IEnumerator SendRequest(string desc)
     {
         Debug.Log($"Sending request with description: {desc}");
-        string url = "http://34.65.36.39:5000/process";
+        string url = "http://YourServerIPAdress:Port/process";
 
         WWWForm form = new WWWForm();
         form.AddField("description", desc);
 
         UnityWebRequest www = UnityWebRequest.Post(url, form); 
-
-        //yield return www.SendWebRequest();
 
         var response = www.SendWebRequest();
         while (!response.isDone) yield return null;
