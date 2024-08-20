@@ -1,0 +1,42 @@
+{
+    "cpp": {
+        "options": [],
+        "deps": [
+            [
+                "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
+                1723414956.4784424
+            ],
+            [
+                "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/slangc",
+                1723423651.5285325
+            ],
+            [
+                "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
+                1723423651.420524
+            ]
+        ],
+        "version": "1.2.2",
+        "includePaths": []
+    },
+    "cuda": {
+        "options": [],
+        "deps": [
+            [
+                "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
+                1723414956.4784424
+            ],
+            [
+                "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/slangc",
+                1723423651.5285325
+            ],
+            [
+                "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
+                1723423651.420524
+            ]
+        ],
+        "version": "1.2.2",
+        "includePaths": []
+    },
+    "moduleName": "_slangtorch_texture_baker_44136fa355b3678a",
+    "moduleBinary": "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/.slangtorch_cache/texture_baker/44136fa355b3678a/0/_slangtorch_texture_baker_44136fa355b3678a.pyd"
+}

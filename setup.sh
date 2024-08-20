@@ -36,7 +36,7 @@ server {
     }
 
     location /objects/ {
-    	alias /YourPath/TextTo3D-Toolkit/output/0/;
+    	alias /home/thisforbusiness00/TextTo3D-Toolkit/stablefast/output/0;
     }
 
 }
@@ -45,29 +45,47 @@ EOL
 # Restart Nginx to apply settings
 sudo systemctl restart nginx
 
-# Create output directory
-# mkdir -p YourPath/TextTo3D-Toolkit/output/0 Is not useful if the directory has already been created(The Repository already has it)
-
 # Create conda environments if they do not exist
-if ! conda info --envs | grep -q 'env1'; then
-    conda env create -f envs/env1.yml
+if ! conda info --envs | grep -q 'env1B'; then
+    conda env create -f envs/env1B.yml
 else
-    echo "L'ambiente env1 esiste già, saltando la creazione."
+    echo "L'ambiente env1B esiste già, saltando la creazione."
 fi
 
-if ! conda info --envs | grep -q 'env2'; then
-    conda env create -f envs/env2.yml
+if ! conda info --envs | grep -q 'env2New'; then
+    conda env create -f envs/env2New.yml
 else
-    echo "L'ambiente env2 esiste già, saltando la creazione."
+    echo "L'ambiente env2New esiste già, saltando la creazione."
 fi
 
-# Activate env2 and install additional dependencies
-conda activate env2
-pip install --upgrade setuptools
-pip install -r requirements.txt
+conda activate env1B
+pip install diffusers
+pip install transformers
+pip install torch
+pip install sentencepiece
+pip install accelerate
+pip install protobuf
+pip install git+https://github.com/huggingface/diffusers.git
+conda deactivate
 
-# Deactivate conda environment
+conda activate stable-fast-3d
+pip install rembg[gpu]==2.0.57
+pip install torch
+pip install einops==0.7.0
+pip install jaxtyping==0.2.31
+pip install omegaconf==2.3.0
+pip install transformers==4.42.3
+pip install slangtorch==1.2.2
+pip install open_clip_torch==2.24.0
+pip install trimesh==4.4.1
+pip install numpy==1.26.4
+pip install huggingface-hub==0.23.4
+pip install rembg[gpu]==2.0.57
+pip install git+https://github.com/vork/PyNanoInstantMeshes.git
+pip install gpytoolbox==0.2.0
+huggingface-cli login
 conda deactivate
 
 # Start the Flask server
 python3 server.py
+ 
