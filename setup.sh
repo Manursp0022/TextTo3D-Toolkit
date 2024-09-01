@@ -46,8 +46,8 @@ EOL
 sudo systemctl restart nginx
 
 # Create conda environments if they do not exist
-if ! conda info --envs | grep -q 'env1B'; then
-    conda env create -f envs/env1B.yml
+if ! conda info --envs | grep -q 'brou'; then
+    conda env create -f envs/newOne.yml
 else
     echo "L'ambiente env1B esiste già, saltando la creazione."
 fi

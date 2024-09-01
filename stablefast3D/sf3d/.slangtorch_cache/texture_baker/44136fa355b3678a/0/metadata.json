@@ -4,15 +4,15 @@
         "deps": [
             [
                 "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
-                1723414956.4784424
+                1725198399.358823
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/slangc",
-                1723423651.5285325
+                1725199617.8501403
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
-                1723423651.420524
+                1725199617.7461305
             ]
         ],
         "version": "1.2.2",
@@ -23,15 +23,15 @@
         "deps": [
             [
                 "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
-                1723414956.4784424
+                1725198399.358823
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/slangc",
-                1723423651.5285325
+                1725199617.8501403
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
-                1723423651.420524
+                1725199617.7461305
             ]
         ],
         "version": "1.2.2",
