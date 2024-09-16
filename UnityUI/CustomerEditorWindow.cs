@@ -11,6 +11,8 @@ public class CustomEditorWindow : EditorWindow
     private string description = "";
     private bool isGenerating = false;
 
+    private bool useLessThan15GB = false;
+
     private List<GameObject> generatedObjects = new List<GameObject>();
 
     [MenuItem("Window/Custom Editor Window")]
@@ -21,8 +23,17 @@ public class CustomEditorWindow : EditorWindow
 
     private void OnGUI()
     {
-        GUILayout.Label("Describe the Object you want to generate", EditorStyles.boldLabel);
-        description = EditorGUILayout.TextField("Description", description);
+        GUILayout.Label("Describe the object to generate", EditorStyles.boldLabel);
+
+        useLessThan15GB = EditorGUILayout.Toggle("Use with less than 15GB", useLessThan15GB);
+
+        //description = EditorGUILayout.TextField("Description", description);
+        GUILayout.Label("Description", EditorStyles.label);
+
+        GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea);
+        textAreaStyle.wordWrap = true;
+
+        description = EditorGUILayout.TextArea(description, textAreaStyle, GUILayout.Height(100), GUILayout.ExpandWidth(true));
 
         GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
         buttonStyle.normal.textColor = Color.white;
@@ -55,13 +66,12 @@ public class CustomEditorWindow : EditorWindow
     private IEnumerator SendRequest(string desc)
     {
         Debug.Log($"Sending request with description: {desc}");
-        string url = "http://YourServerIPAdress:Port/process";
+        string url = "http://ServerIP:5000/process";
 
         WWWForm form = new WWWForm();
         form.AddField("description", desc);
 
         UnityWebRequest www = UnityWebRequest.Post(url, form); 
-
         var response = www.SendWebRequest();
         while (!response.isDone) yield return null;
 
@@ -78,11 +88,10 @@ public class CustomEditorWindow : EditorWindow
 
                 // Parse the JSON response
                 var jsonResponse = JsonUtility.FromJson<ResponseData>(responseText);
-                if (jsonResponse != null && !string.IsNullOrEmpty(jsonResponse.object_url) && !string.IsNullOrEmpty(jsonResponse.texture_url))
+                if (jsonResponse != null && !string.IsNullOrEmpty(jsonResponse.object_url))
                 {
                     Debug.Log("Object URL found: " + jsonResponse.object_url);
-                    Debug.Log("Texture URL found: " + jsonResponse.texture_url);
-                    Download3DObject(jsonResponse.object_url, jsonResponse.texture_url);
+                    Download3DObject(jsonResponse.object_url);
                 }
                 else
                 {
@@ -105,25 +114,22 @@ public class CustomEditorWindow : EditorWindow
         isGenerating = false;
     }
 
-    private void Download3DObject(string objectUrl,string textureUrl)
+    private void Download3DObject(string objectUrl)
     {
-        Debug.Log("Starting coroutine to download 3D object and texture from: " + objectUrl + " & " + textureUrl);
-        EditorCoroutine.Start(DownloadObjectCoroutine(objectUrl,textureUrl));
+        Debug.Log("Starting coroutine to download 3D object: " + objectUrl);
+        EditorCoroutine.Start(DownloadObjectCoroutine(objectUrl));
     }
 
-    private IEnumerator DownloadObjectCoroutine(string objectUrl,string textureUrl)
+    private IEnumerator DownloadObjectCoroutine(string objectUrl)
     {
         UnityWebRequest www = UnityWebRequest.Get(objectUrl);
+        
         var response = www.SendWebRequest();
         while (!response.isDone) yield return null; //Waiting for the Models 
 
-        UnityWebRequest wwwTex = UnityWebRequestTexture.GetTexture(textureUrl);
-        var secResponse = wwwTex.SendWebRequest();
-        while (!secResponse.isDone) yield return null;
-
-        if (www.result == UnityWebRequest.Result.Success && wwwTex.result == UnityWebRequest.Result.Success)
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("3D object and texture download complete.");
+            Debug.Log("3D object complete.");
             string directoryPath = "Assets/DownloadedObjects/";
             if(!Directory.Exists(directoryPath))
             {
@@ -131,33 +137,16 @@ public class CustomEditorWindow : EditorWindow
             }
 
             //Guid for unique names
-            string filePath = directoryPath + "3DModel_" + System.Guid.NewGuid() + ".obj";
+            string filePath = directoryPath + "mesh" + System.Guid.NewGuid() + ".glb";
             File.WriteAllBytes(filePath, www.downloadHandler.data);
             AssetDatabase.ImportAsset(filePath);
             GameObject importedObject = AssetDatabase.LoadAssetAtPath<GameObject>(filePath);
 
-            string textureFilePath = directoryPath + "texture_" + System.Guid.NewGuid() + ".png";
-            File.WriteAllBytes(textureFilePath, wwwTex.downloadHandler.data);
-            AssetDatabase.ImportAsset(textureFilePath);
-            Texture2D importedTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(textureFilePath);
-
-            if(importedObject != null && importedTexture != null)
+            if(importedObject != null)
             { 
                 GameObject instance = Instantiate(importedObject, Vector3.zero, Quaternion.identity);
                 generatedObjects.Add(instance);
-                Renderer renderer = instance.GetComponentInChildren<Renderer>();
-                
-                if(renderer != null)
-                {
-                    Material newMaterial = new Material(Shader.Find("Standard"));
-                    newMaterial.mainTexture = importedTexture;
-                    renderer.sharedMaterial = newMaterial;
-                    Debug.Log("Texture applied to the 3D object.");
-                }
-                else
-                {
-                        Debug.LogError("Failed to apply texture: Renderer component not found.");
-                }
+
                 Debug.Log("3D object downloaded and imported successfully!");
             }
             else
@@ -167,11 +156,7 @@ public class CustomEditorWindow : EditorWindow
         }
         else
         {
-            if (www.result != UnityWebRequest.Result.Success)
-                Debug.LogError("Error while downloading 3D object: " + www.error);
-
-            if (wwwTex.result != UnityWebRequest.Result.Success)
-                Debug.LogError("Error while downloading texture: " + wwwTex.error);
+            Debug.LogError("Error while downloading 3D object: " + www.error);
         }
     }
 }
@@ -180,7 +165,6 @@ public class CustomEditorWindow : EditorWindow
 public class ResponseData
 {
     public string object_url;
-    public string texture_url;
 }
 
 public class EditorCoroutine
