@@ -3,16 +3,16 @@
         "options": [],
         "deps": [
             [
-                "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
-                1725198399.358823
+                "/home/simranjitsin3/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
+                1726510563.4192617
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/slangc",
-                1725199617.8501403
+                1726516751.8934777
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
-                1725199617.7461305
+                1726516751.7894685
             ]
         ],
         "version": "1.2.2",
@@ -22,21 +22,21 @@
         "options": [],
         "deps": [
             [
-                "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
-                1725198399.358823
+                "/home/simranjitsin3/TextTo3D-Toolkit/stablefast3D/sf3d/texture_baker.slang",
+                1726510563.4192617
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/slangc",
-                1725199617.8501403
+                1726516751.8934777
             ],
             [
                 "/opt/conda/envs/stable-fast-3d/lib/python3.10/site-packages/slangtorch/bin/libslang.so",
-                1725199617.7461305
+                1726516751.7894685
             ]
         ],
         "version": "1.2.2",
         "includePaths": []
     },
     "moduleName": "_slangtorch_texture_baker_44136fa355b3678a",
-    "moduleBinary": "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/sf3d/.slangtorch_cache/texture_baker/44136fa355b3678a/0/_slangtorch_texture_baker_44136fa355b3678a.pyd"
+    "moduleBinary": "/home/simranjitsin3/TextTo3D-Toolkit/stablefast3D/sf3d/.slangtorch_cache/texture_baker/44136fa355b3678a/0/_slangtorch_texture_baker_44136fa355b3678a.pyd"
 }

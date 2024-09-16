@@ -46,10 +46,10 @@ EOL
 sudo systemctl restart nginx
 
 # Create conda environments if they do not exist
-if ! conda info --envs | grep -q 'brou'; then
-    conda env create -f envs/newOne.yml
+if ! conda info --envs | grep -q 'env1'; then
+    conda env create -f envs/env1.yml
 else
-    echo "L'ambiente env1B esiste già, saltando la creazione."
+    echo "L'ambiente env1 esiste già, saltando la creazione."
 fi
 
 if ! conda info --envs | grep -q 'env2New'; then
@@ -87,5 +87,7 @@ huggingface-cli login
 conda deactivate
 
 # Start the Flask server
+pip install flask
+pip install flask_cors
 python3 server.py
  

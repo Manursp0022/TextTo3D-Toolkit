@@ -32,8 +32,8 @@ def process_description():
     description = request.form['description']
     
     # Path to Image and object source
-    image_path = "/home/thisforbusiness00/TextTo3D-Toolkit/output/output_image.png"
-    model_output_dir = "/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/output/"
+    image_path = "/home/simranjitsin3/TextTo3D-Toolkit/output/output_image.png"
+    model_output_dir = "/home/simranjitsin3/TextTo3D-Toolkit/stablefast3D/output/"
     model_output_path = os.path.join(model_output_dir, "mesh.glb")
     
     try:
@@ -41,7 +41,7 @@ def process_description():
 
         # First Model(Text to Image)
         print("Eseguendo il primo modello...")
-        result1 = subprocess.run(f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate brou && python AuraFlow/run.py \"{description}\"'", shell=True, check=True)
+        result1 = subprocess.run(f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate env1 && python FluxModel/runFlux.py \"{description}\"'", shell=True, check=True)
         print(f"Primo modello eseguito con successo: {result1}")
 
         # Check if the Image has been created 
@@ -84,7 +84,7 @@ def process_description():
    #return send_from_directory('/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/output/0', filename)
 @app.route('/objects/<path:filename>')
 def serve_object(filename):
-    directory_path = '/home/thisforbusiness00/TextTo3D-Toolkit/stablefast3D/output/0'
+    directory_path = '/home/simranjitsin3/TextTo3D-Toolkit/stablefast3D/output/0'
 
     # Servire il file
     response = send_from_directory(directory_path, filename)
