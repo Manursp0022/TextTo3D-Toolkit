@@ -11,4 +11,4 @@ image = pipe(
     max_sequence_length=512,
     generator=torch.Generator("cpu")
 ).images[0]
-image.save("PathTo/output_image.png")
+image.save("/home/simranjitsin3/TextTo3D-Toolkit/output/output_image.png")

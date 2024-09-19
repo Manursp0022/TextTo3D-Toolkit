@@ -41,7 +41,7 @@ def process_description():
 
         # First Model(Text to Image)
         print("Eseguendo il primo modello...")
-        result1 = subprocess.run(f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate env1 && python FluxModel/runFlux.py \"{description}\"'", shell=True, check=True)
+        result1 = subprocess.run(f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate env1 && python FluxModel/runFluxOF.py \"Create a 3D high-Quality Render {description}\"'", shell=True, check=True)
         print(f"Primo modello eseguito con successo: {result1}")
 
         # Check if the Image has been created 
@@ -56,7 +56,7 @@ def process_description():
         print(f"Secondo modello eseguito con successo: {result2}")
 
         # Building the object and texture url
-        object_url = f"http://34.34.118.8:5000/objects/mesh.glb"
+        object_url = f"http://34.64.171.38:5000/objects/mesh.glb"
         #texture_url = f"http://34.65.54.36:5000/objects/texture.png"
         print(f"URL del modello 3D: {object_url}")
         #print(f"URL della texture: {texture_url}")
