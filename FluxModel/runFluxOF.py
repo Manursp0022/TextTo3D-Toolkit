@@ -8,7 +8,7 @@ image = pipe(
     prompt,
     guidance_scale=0.0,
     num_inference_steps=4,
-    max_sequence_length=256,
-    generator=torch.Generator("cpu").manual_seed(0)
+    max_sequence_length=512,
+    generator=torch.Generator("cpu")
 ).images[0]
-image.save("flux-schnellImage.png")
+image.save("PathTo/output_image.png")
