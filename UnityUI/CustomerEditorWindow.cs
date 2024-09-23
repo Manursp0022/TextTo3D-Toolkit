@@ -70,6 +70,9 @@ public class CustomEditorWindow : EditorWindow
 
         WWWForm form = new WWWForm();
         form.AddField("description", desc);
+	WWWForm form = new WWWForm();
+        form.AddField("description", desc);
+        form.AddField("use_less_than_15GB", useLessThan15GB.ToString());
 
         UnityWebRequest www = UnityWebRequest.Post(url, form); 
         var response = www.SendWebRequest();

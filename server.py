@@ -30,6 +30,8 @@ def process_description():
     last_request_time = time.time() 
 
     description = request.form['description']
+    use_less_than_15GB_str = request.form.get('use_less_than_15GB', 'False')
+    use_less_than_15GB = use_less_than_15GB == 'True'
     
     # Path to Image and object source
     image_path = "/home/simranjitsin3/TextTo3D-Toolkit/output/output_image.png"
@@ -38,11 +40,20 @@ def process_description():
     
     try:
         print("Ricevuta descrizione:", description)
+	print("Usa meno di 15GB:", use_less_than_15GB)
 
-        # First Model(Text to Image)
-        print("Eseguendo il primo modello...")
-        result1 = subprocess.run(f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate env1 && python FluxModel/runFluxOF.py \"Create a 3D high-Quality Render {description}\"'", shell=True, check=True)
-        print(f"Primo modello eseguito con successo: {result1}")
+           if use_less_than_15GB:
+	    print("Eseguendo il primo modello, con meno di 24GB")
+            result1 = subprocess.run(
+               f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate env1 && python FluxModel/runFlux.py \"Create a 3D high-Quality Render {description}\"'", shell=True, check=True)
+            )
+        else:
+	    print("Eseguendo il primo modello, con più di 24GB")
+            result1 = subprocess.run(
+                f"/bin/bash -c 'source /opt/conda/etc/profile.d/conda.sh && conda activate env1 && python FluxModel/runFluxOF.py \"Create a 3D high-Quality Render {description}\"'", shell=True, check=True)
+            )
+	print(f"Primo modello eseguito con successo: {result1}")
+        
 
         # Check if the Image has been created 
         if not os.path.isfile(image_path):
