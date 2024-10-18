@@ -1,2 +1,2 @@
 # TextTo3D-Toolkit
-<img src="pluginvideo.gif" alt="Demo video" width="600"/>
+![Demo video](pluginvideoHq.gif)
