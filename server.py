@@ -34,8 +34,8 @@ def process_description():
     use_less_than_15GB = use_less_than_15GB == 'True'
     
     # Path to Image and object source
-    image_path = "/home/simranjitsin3/TextTo3D-Toolkit/output/output_image.png"
-    model_output_dir = "/home/simranjitsin3/TextTo3D-Toolkit/stablefast3D/output/"
+    image_path = "/YourPathTo/TextTo3D-Toolkit/output/output_image.png" #Don't change ("TextTo3D-Toolkit/output/output_image.png")
+    model_output_dir = "/YourPathTo/TextTo3D-Toolkit/stablefast3D/output/"  #Don't change ("TextTo3D-.....")
     model_output_path = os.path.join(model_output_dir, "mesh.glb")
     
     try:
@@ -67,8 +67,8 @@ def process_description():
         print(f"Secondo modello eseguito con successo: {result2}")
 
         # Building the object and texture url
-        object_url = f"http://34.64.171.38:5000/objects/mesh.glb"
-        #texture_url = f"http://34.65.54.36:5000/objects/texture.png"
+        object_url = f"http://InsertHereYourExternalIP:InsertHereYourPort/objects/mesh.glb"
+        #texture_url = f"http://InsertHereYourExternalIP:InsertHereYourPort/objects/texture.png"
         print(f"URL del modello 3D: {object_url}")
         #print(f"URL della texture: {texture_url}")
 
