@@ -56,7 +56,6 @@ Ensure all placeholders are replaced with your **server's external IP address**,
 
 To install the required models and dependencies, run the `setup.sh` script.
 
-bash
 `bash setup.sh`
 
 This step may take several minutes, depending on your internet connection and server resources. After that, the server will listen on the port specified in server.py and be ready to handle requests from the Unity interface.
