@@ -80,7 +80,7 @@ Ensure that Unity's HTTP service is enabled in the project settings to allow com
 
 From the Unity interface, you can select between two processing modes:
 - **High Efficiency (GPU 24GB)**: Produces a 3D model approximately every **30 seconds**.
-- **Optimized Mode (GPU <15GB)**: Produces a 3D model approximately every **1:40 minutes**.
+- **Optimized Mode (20GB> GPU <24GB)**: Produces a 3D model approximately every **1:40 minutes**.
 
 Choose the mode based on your hardware resources.
 
