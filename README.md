@@ -5,7 +5,7 @@ https://github.com/user-attachments/assets/4fdc894a-bc8b-48c9-823b-338c8c31a673
 (It is recommended to run the setup.sh and consequently the Server on a remote server as the models and dependencies will be downloaded on the machine)
 # **TextTo3D-Toolkit**
 
-Welcome to the **TextTo3D-Toolkit**, a cutting-edge tool for generating 3D models from text descriptions. The system integrates seamlessly with Unity and is designed to leverage powerful GPU resources for optimal performance. This toolkit is ideal for users who need to rapidly create 3D assets without traditional modeling skills.
+Welcome to the **TextTo3D-Toolkit**, a cutting-edge tool for generating 3D models from text descriptions. The system integrates seamlessly with Unity and is designed to leverage powerful GPU resources for optimal performance. This toolkit is ideal for users who need to quickly create 3D resources and either use or modify them.
 
 ---
 
